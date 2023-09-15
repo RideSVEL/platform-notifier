@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${POSTGRES_URL:}
+    username: ${POSTGRES_USERNAME:}
+    driver-class-name: org.postgresql.Driver
+    password: ${POSTGRES_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+telegram:
+  notifier-bot:
+    username: ${TELEGRAM_BOT_USERNAME:}
+    token: ${TELEGRAM_BOT_TOKEN:}
+    webHookPath: ${TELEGRAM_WEB_HOOK_PATH:}
+
