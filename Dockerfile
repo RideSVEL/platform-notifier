@@ -6,6 +6,5 @@ RUN gradle build --no-daemon -x test
 FROM arm64v8/eclipse-temurin:17-jre
 MAINTAINER serejka
 EXPOSE 1472
-RUN mkdir /app
 COPY  --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
 ENTRYPOINT ["java","-jar","/app/spring-boot-application.jar"]
