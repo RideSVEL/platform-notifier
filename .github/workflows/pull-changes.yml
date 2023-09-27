@@ -27,4 +27,4 @@ jobs:
           key: ${{ secrets.SERVER_SSH_PK }}
           port: 22
           script: |
-            cd github/platform-notifier/platform-notifier && gradle bootJar -Pspring.profiles.active=prod -x test
+            cd github/platform-notifier/platform-notifier && PWD && gradle -version
