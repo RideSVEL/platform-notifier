@@ -33,7 +33,7 @@ class MessageHandler(
                 }
                 message.text = "Saved link to check it"
             } else {
-                message.text = text + text + text
+                message.text = text + text + text + text
             }
 
             message.chatId = chatId.toString()
