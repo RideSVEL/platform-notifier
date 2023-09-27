@@ -70,3 +70,4 @@ hs_err_pid*
 replay_pid*
 
 !/.gitignore
+/docker-compose.yml
