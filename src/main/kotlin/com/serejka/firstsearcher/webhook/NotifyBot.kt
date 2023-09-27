@@ -1,6 +1,6 @@
 package com.serejka.firstsearcher.webhook
 
-import com.serejka.firstsearcher.config.TelegramProperties
+import com.serejka.firstsearcher.config.properties.TelegramProperties
 import com.serejka.firstsearcher.handler.MessageHandler
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.bots.TelegramWebhookBot

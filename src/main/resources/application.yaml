@@ -19,3 +19,8 @@ telegram:
     token: ${TELEGRAM_BOT_TOKEN:}
     webHookPath: ${TELEGRAM_WEB_HOOK_PATH:}
 
+redisson:
+  database: ${REDIS_DB:0}
+  url: ${REDIS_HOST:}:${REDIS_PORT:}
+  password: ${REDIS_PASSWORD:}
+

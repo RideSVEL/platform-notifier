@@ -32,6 +32,7 @@ dependencies {
     implementation 'org.telegram:telegrambots-spring-boot-starter:6.8.0'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation 'org.jsoup:jsoup:1.16.1'
+    implementation group: 'org.redisson', name: 'redisson', version: '3.2.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 //    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'

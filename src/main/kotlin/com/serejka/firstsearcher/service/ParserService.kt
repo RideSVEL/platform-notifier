@@ -4,11 +4,14 @@ import com.serejka.firstsearcher.model.dto.AdResponse
 import com.serejka.firstsearcher.repository.ThreadRepository
 import com.serejka.firstsearcher.repository.WorkerRepository
 import com.serejka.firstsearcher.webhook.NotifyBot
+import jakarta.annotation.PostConstruct
 import lombok.SneakyThrows
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
+import org.redisson.api.RSet
+import org.redisson.api.RedissonClient
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
@@ -17,7 +20,8 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.util.*
+import java.util.Date
+import java.util.Objects
 import java.util.concurrent.TimeUnit
 
 // TODO rewrite with https://docs.skrape.it/docs/overview/setup
@@ -25,10 +29,16 @@ import java.util.concurrent.TimeUnit
 class ParserService(
     private var notifyBot: NotifyBot,
     private val threadRepository: ThreadRepository,
-    private val workerRepository: WorkerRepository
+    private val workerRepository: WorkerRepository,
+    private var redissonClient: RedissonClient
 ) {
 
-    private var sentUrls: MutableSet<String> = mutableSetOf()
+    private lateinit var sentUrls: RSet<String>
+
+    @PostConstruct
+    private fun init() {
+        sentUrls = redissonClient.getSet("sentUrls")
+    }
 
     @Scheduled(fixedDelay = 60, timeUnit = TimeUnit.SECONDS)
     fun processLogic() {
