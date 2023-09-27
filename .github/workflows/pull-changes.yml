@@ -27,4 +27,4 @@ jobs:
           key: ${{ secrets.SERVER_SSH_PK }}
           port: 22
           script: |
-            gradle -version
+            cd github/platform-notifier/platform-notifier && git pull && ./gradlew bootJar && sudo docker build -t platform-notifier . && sudo docker stop platform-notifier ; sudo docker rm platform-notifier ; sudo docker run --name platform-notifier -p 1472:1472 -d platform-notifier
