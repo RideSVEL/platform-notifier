@@ -88,7 +88,7 @@ link: https://www.olx.ua${adResponse.url}""" + " \n" +
         val parse = format.parse(adResponse.time)
         val localDateTime = LocalDateTime.ofInstant(Date().toInstant(), ZoneOffset.UTC)
         val parse1 = format.parse(localDateTime.hour.toString() + ":" + localDateTime.minute)
-        return parse1.time - parse.time < 300000 * 25
+        return parse1.time - parse.time < 300000 * 12
     }
 
     private fun getAddResponse(ad: Element): AdResponse {
