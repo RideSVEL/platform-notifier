@@ -42,12 +42,13 @@ class ParserService(
 
     @Scheduled(fixedDelay = 60, timeUnit = TimeUnit.SECONDS)
     fun processLogic() {
+        println("Try to find some adds")
         threadRepository.findAllByActiveTrue()
             .parallelStream().forEach { thread ->
                 try {
                     val url = thread.link
                     val doc = Jsoup.connect(url!!)
-                        .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0")
+                        .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:126.0) Gecko/20100101 Firefox/126.0")
                         .referrer("https://www.olx.ua/")
                         .get()
                     val adds = getAdds(doc)
@@ -117,7 +118,7 @@ link: https://www.olx.ua${adResponse.url}""" + " \n" +
     }
 
     private fun mapWithAdTitleAndPriceAndTime(ad: Element, adResponse: AdResponse) {
-        ad.getElementsByClass("css-1apmciz").stream()
+        ad.getElementsByClass("css-u2ayx9").stream()
             .findFirst().ifPresent { element: Element ->
                 mapWithTitle(adResponse, element)
                 mapWithPrice(adResponse, element)
@@ -152,7 +153,7 @@ link: https://www.olx.ua${adResponse.url}""" + " \n" +
     }
 
     private fun getAdds(doc: Document): Elements {
-        return doc.getElementsByClass("css-rc5s2u")
+        return doc.getElementsByClass("css-u2ayx9")
     }
 
 }
